@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "myAppState"
+    }
+  },
+  "defaultProject": "myAppState",
+  "cli": {
+    "analytics": false
+  }
 }
