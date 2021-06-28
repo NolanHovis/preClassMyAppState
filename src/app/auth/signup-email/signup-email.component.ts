@@ -54,16 +54,16 @@ export class SignupEmailComponent implements OnInit, OnDestroy {
     const params = {}
     this.subs.add(
       this.userService.registerUser(params).subscribe(data => {
-        debugger
-        if (data) {
-          const newUser = new User(data)
+        if (data && data.success && data.user) {
+          const newUser = new User(data.user)
+          this.router.navigate(['/home'])
         }
       })
     )
   }
 
   routeToLogin() {
-    this.router.navigate(['login'])
+    this.router.navigate(['/auth/login'])
   }
 
   ngOnDestroy() {
