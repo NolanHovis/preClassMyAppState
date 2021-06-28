@@ -11,7 +11,10 @@
     "dev:ssr": "ng run myAppState:serve-ssr",
     "serve:ssr": "node dist/myAppState/server/main.js",
     "build:ssr": "ng build --prod && ng run myAppState:server:production",
-    "prerender": "ng run myAppState:prerender"
+    "prerender": "ng run myAppState:prerender",
+    "start:heroku": "node dist/myAppState/server/main.js",
+    "heroku-prebuild": "npm install -f",
+    "heroku-postbuild": "npm run build:ssr"
   },
   "private": true,
   "dependencies": {
