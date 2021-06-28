@@ -1,4 +1,5 @@
-import { Component, OnInit, ElementRef, Input, Renderer2, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ElementRef, Input, Renderer2, OnDestroy, Output, EventEmitter, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common'
 import { ModalService } from './modal.service';
 
 @Component({
@@ -13,11 +14,19 @@ export class ModalsComponent implements OnInit, OnDestroy {
   @Output() modalClosed: EventEmitter<any> = new EventEmitter()
   private element: any;
 
-  constructor(private modalService: ModalService, private el: ElementRef, private renderer: Renderer2) {
-    this.element = this.el.nativeElement;
+  constructor(
+    private modalService: ModalService,
+    private el: ElementRef,
+    private renderer: Renderer2,
+    @Inject(PLATFORM_ID) private platformId: any
+  ) {
+
   }
 
   ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.element = this.el.nativeElement;
+
     const modal = this;
 
     // ensure id attribute exists
@@ -47,6 +56,7 @@ export class ModalsComponent implements OnInit, OnDestroy {
 
     // add self (this modal instance) to the modal service so it's accessible from controllers
     this.modalService.addModal(this);
+    }
   }
 
   // open modal
@@ -71,8 +81,10 @@ export class ModalsComponent implements OnInit, OnDestroy {
 
   // remove self from modal service when component is destroyed
   ngOnDestroy(): void {
-    this.modalService.remove(this.id);
-    this.element.remove();
+    if (isPlatformBrowser(this.platformId)) {
+      this.modalService.remove(this.id);
+      this.element.remove();
+     }
   }
 
 
