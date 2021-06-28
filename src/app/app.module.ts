@@ -26,7 +26,7 @@ import { JustCurrentuserValueComponent } from './just-currentuser-value/just-cur
     JustCurrentuserValueComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     ModalsModule,
     FormsModule,
