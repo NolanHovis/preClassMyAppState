@@ -15,6 +15,10 @@ import { SignupEmailComponent } from './auth/signup-email/signup-email.component
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from './auth/auth.module';
 import { JustCurrentuserValueComponent } from './just-currentuser-value/just-currentuser-value.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AnimateComponent } from './animate/animate.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,8 @@ import { JustCurrentuserValueComponent } from './just-currentuser-value/just-cur
     NotFoundComponent,
     ProgrommaticModalComponent,
     PlaceholderDirective,
-    JustCurrentuserValueComponent
+    JustCurrentuserValueComponent,
+    AnimateComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -32,7 +37,14 @@ import { JustCurrentuserValueComponent } from './just-currentuser-value/just-cur
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    AuthModule
+    AuthModule,
+    BrowserAnimationsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

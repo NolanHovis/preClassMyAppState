@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-primary" (click)="move()">
+      Move
+    </button>
+    <button class="btn btn-primary" (click)="size()">
+      Size
+    </button>
+    <button class="btn btn-primary" (click)="opacity()">
+      Opacity
+    </button>
+    <button class="btn btn-primary" (click)="round()">
+      Round
+    </button>
+    <button class="btn btn-primary" (click)="color()">
+      Color
+    </button>
+  </div>
+</div>
+
+<hr>
+
+<div
+  style="width: 200px; height: 200px"
+  [@animationState]="state">
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-xs-12">
+   <h2>Keyframes Example</h2>
+  </div>
+</div>
+
+<hr>
+
+<div
+  style="width: 200px; height: 200px;"
+  [@keyframesEx]>
+</div>

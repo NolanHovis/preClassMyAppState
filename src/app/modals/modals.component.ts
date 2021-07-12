@@ -5,7 +5,8 @@ import { ModalService } from './modal.service';
 @Component({
   selector: 'app-modals',
   templateUrl: './modals.component.html',
-  styleUrls: ['./modals.component.scss']
+  styleUrls: ['./modals.component.scss'],
+
 })
 export class ModalsComponent implements OnInit, OnDestroy {
   @Input() id: string;
